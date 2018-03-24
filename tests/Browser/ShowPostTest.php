@@ -15,11 +15,12 @@ class ShowPostTest extends DuskTestCase
     {
         $post = factory('App\Models\Post')->create([
             'title' => 'Foo',
+            'slug'  => 'foo',
             'body'  => '<p>Content.</p>'
         ]);
 
         $this->browse(function ($browser) use($post) {
-            $browser->visit('/posts/1')
+            $browser->visit('/posts/foo')
                     ->assertSeeIn('h1', 'Foo')
                     ->assertSeeIn('p', $post->created_at)
                     ->assertDontSee('<p>')

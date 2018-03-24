@@ -11,6 +11,9 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Post::class)->create();
+        factory(App\Models\Post::class)->create([
+            'title' => 'Foo',
+            'slug'  => 'foo'
+        ]);
     }
 }
