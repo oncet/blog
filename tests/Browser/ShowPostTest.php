@@ -39,7 +39,7 @@ class ShowPostTest extends DuskTestCase
 
         $this->browse(function ($browser) use($post) {
             $browser->visit('/posts/foo')
-                    ->assertSourceHas('foo.jpg');
+                    ->assertSourceHas('images/large/foo.jpg');
         });
     }
 }
