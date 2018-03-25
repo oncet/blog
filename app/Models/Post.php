@@ -15,4 +15,14 @@ class Post extends Model
 	{
 	    return 'slug';
 	}
+
+	public function images()
+	{
+		return $this->belongsToMany('App\Models\Image');
+	}
+
+	public function getCoverAttribute()
+	{
+		return optional($this->images->first())->file;
+	}
 }

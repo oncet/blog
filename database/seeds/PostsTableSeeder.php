@@ -11,9 +11,13 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Post::class)->create([
+        $post = factory(App\Models\Post::class)->create([
             'title' => 'Foo',
             'slug'  => 'foo'
         ]);
+
+        $image = factory(App\Models\Image::class)->create();
+
+        $post->images()->save($image);
     }
 }
