@@ -23,6 +23,11 @@ class Post extends Model
 
 	public function getCoverAttribute()
 	{
-		return optional($this->images->first())->file;
+		return optional($this->images)->first();
+	}
+
+	public function getSummaryAttribute()
+	{
+		return str_limit($this->body, 100);
 	}
 }
