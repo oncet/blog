@@ -3,7 +3,7 @@
 <p>{{ $post->created_at->diffForHumans() }}</p>
 
 @if ($post->cover)
-	<img src="{{ route('imagecache', ['template' => 'large', 'filename' => $post->cover]) }}">
+	<img src="{{ route('imagecache', ['template' => 'large', 'filename' => $post->cover->file]) }}">
 @endif
 
 {!! $post->body !!}
