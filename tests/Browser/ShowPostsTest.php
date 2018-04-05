@@ -27,4 +27,35 @@ class ShowPostsTest extends DuskTestCase
                     ->assertSourceHas('/posts/foo');
         });
     }
+
+    /** @test */
+    public function is_shows_post_image()
+    {
+        $post = factory('App\Models\Post')->create(['slug'  => 'foo']);
+
+        $image = factory('App\Models\Image')->create(['file' => 'foo.jpg']);
+
+        $post->images()->save($image);
+
+        $this->browse(function ($browser) {
+            $browser->visit('/posts')
+                    ->assertSourceHas('images/large/foo.jpg');
+        });
+    }
+
+    /** @test */
+    public function image_links_to_post()
+    {
+        $post = factory('App\Models\Post')->create(['slug'  => 'foo']);
+
+        $image = factory('App\Models\Image')->create(['file' => 'foo.jpg']);
+
+        $post->images()->save($image);
+
+        $this->browse(function ($browser) {
+            $browser->visit('/posts')
+                    ->assertSourceHas('images/large/foo.jpg')
+                    ->assertSourceHas('<a href="' . env('APP_URL') . '/posts/foo"><img');
+        });
+    }
 }
