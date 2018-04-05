@@ -1,0 +1,34 @@
+sudo: required
+language: php
+dist: trusty
+
+php:
+  - 7.1
+
+env:
+  global:
+    - APP_ENV=testing
+    - APP_URL=http://127.0.0.1:8000
+    - DB_DATABASE=blog
+    - DB_USERNAME=postgres
+
+cache:
+  directories:
+  - $HOME/.composer/cache/files
+
+services:
+  - postgresql
+
+install:
+  - travis_retry composer install --no-interaction
+
+before_script:
+  - psql -c 'create database blog;' -U postgres
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - ./vendor/laravel/dusk/bin/chromedriver-linux &
+  - php artisan serve &
+  - php artisan key:generate
+
+script:
+  - php artisan dusk
