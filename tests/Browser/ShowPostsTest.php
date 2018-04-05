@@ -44,6 +44,21 @@ class ShowPostsTest extends DuskTestCase
     }
 
     /** @test */
+    public function title_links_to_post()
+    {
+        factory('App\Models\Post')->create([
+            'title' => 'Foo',
+            'slug'  => 'foo'
+        ]);
+
+        $this->browse(function ($browser) {
+            $browser->visit('/posts')
+                    ->assertSeeLink('Foo')
+                    ->assertSourceHas(env('APP_URL') . '/posts/foo');
+        });
+    }
+
+    /** @test */
     public function image_links_to_post()
     {
         $post = factory('App\Models\Post')->create(['slug'  => 'foo']);
