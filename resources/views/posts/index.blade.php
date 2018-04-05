@@ -4,8 +4,6 @@
 
 @section('content')
 
-  <h1>Posts</h1>
-
   @foreach ($posts as $post)
     <div class="post">
       <h2><a href="{{ route('post.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h2>
