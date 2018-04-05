@@ -1,9 +1,17 @@
-<h1>{{ $post->title }}</h1>
+@extends('layouts.app')
 
-<p>{{ $post->created_at->diffForHumans() }}</p>
+@section('title', $post->title)
 
-@if ($post->cover)
-	<img src="{{ route('imagecache', ['template' => 'large', 'filename' => $post->cover->file]) }}">
-@endif
+@section('content')
 
-{!! $post->body !!}
+  <h1>{{ $post->title }}</h1>
+
+  <p>{{ $post->created_at->diffForHumans() }}</p>
+
+  @if ($post->cover)
+    <p><img src="{{ route('imagecache', ['template' => 'large', 'filename' => $post->cover->file]) }}"></p>
+  @endif
+
+  {!! $post->body !!}
+
+@endsection

@@ -37,9 +37,20 @@ class ShowPostTest extends DuskTestCase
 
         $post->images()->save($image);
 
-        $this->browse(function ($browser) use($post) {
+        $this->browse(function ($browser) {
             $browser->visit('/posts/foo')
                     ->assertSourceHas('images/large/foo.jpg');
+        });
+    }
+
+    /** @test */
+    public function source_contains_bootstrap()
+    {
+        factory('App\Models\Post')->create(['slug' => 'foo']);
+
+        $this->browse(function ($browser) {
+            $browser->visit('/posts/foo')
+                    ->assertSourceHas('maxcdn.bootstrapcdn.com/bootstrap');
         });
     }
 }
