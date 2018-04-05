@@ -21,7 +21,7 @@ class ShowPostTest extends DuskTestCase
 
         $this->browse(function ($browser) {
             $browser->visit('/posts/foo')
-                    ->assertSeeIn('h1', 'Foo')
+                    ->assertSeeIn('h2', 'Foo')
                     ->assertSeeIn('p', ' ago')
                     ->assertDontSee('<p>')
                     ->assertSee('Content.');
