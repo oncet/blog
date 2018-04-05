@@ -73,4 +73,14 @@ class ShowPostsTest extends DuskTestCase
                     ->assertSourceHas('<a href="' . env('APP_URL') . '/posts/foo"><img');
         });
     }
+
+    /** @test */
+    public function it_has_navbar()
+    {
+        $this->browse(function ($browser) {
+            $browser->visit('/')
+                    ->assertSeeLink(env('APP_NAME'))
+                    ->assertSeeIn('.navbar-brand', env('APP_NAME'));
+        });
+    }
 }
