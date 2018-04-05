@@ -12,4 +12,4 @@
 */
 
 Route::get('/posts', 'PostController@index');
-Route::get('/posts/{post}', 'PostController@show')->name('photos.show');
+Route::get('/posts/{post}', 'PostController@show')->name('post.show');
