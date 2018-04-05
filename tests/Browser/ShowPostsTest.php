@@ -21,7 +21,7 @@ class ShowPostsTest extends DuskTestCase
         ]);
 
         $this->browse(function ($browser) {
-            $browser->visit('/posts')
+            $browser->visit('/')
                     ->assertSeeIn('.post h2', 'Foo')
                     ->assertSeeIn('.post .summary', 'Hello world!')
                     ->assertSourceHas('/posts/foo');
@@ -38,7 +38,7 @@ class ShowPostsTest extends DuskTestCase
         $post->images()->save($image);
 
         $this->browse(function ($browser) {
-            $browser->visit('/posts')
+            $browser->visit('/')
                     ->assertSourceHas('images/large/foo.jpg');
         });
     }
@@ -52,7 +52,7 @@ class ShowPostsTest extends DuskTestCase
         ]);
 
         $this->browse(function ($browser) {
-            $browser->visit('/posts')
+            $browser->visit('/')
                     ->assertSeeLink('Foo')
                     ->assertSourceHas(env('APP_URL') . '/posts/foo');
         });
@@ -68,7 +68,7 @@ class ShowPostsTest extends DuskTestCase
         $post->images()->save($image);
 
         $this->browse(function ($browser) {
-            $browser->visit('/posts')
+            $browser->visit('/')
                     ->assertSourceHas('images/large/foo.jpg')
                     ->assertSourceHas('<a href="' . env('APP_URL') . '/posts/foo"><img');
         });
