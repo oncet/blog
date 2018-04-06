@@ -39,7 +39,7 @@ class ShowPostsTest extends DuskTestCase
 
         $this->browse(function ($browser) {
             $browser->visit('/')
-                    ->assertSourceHas('images/large/foo.jpg');
+                    ->assertSourceHas('images/xl/foo.jpg');
         });
     }
 
@@ -69,7 +69,7 @@ class ShowPostsTest extends DuskTestCase
 
         $this->browse(function ($browser) {
             $browser->visit('/')
-                    ->assertSourceHas('images/large/foo.jpg')
+                    ->assertSourceHas('images/xl/foo.jpg')
                     ->assertSourceHas('<a href="' . config('app.url') . '/posts/foo"><img');
         });
     }

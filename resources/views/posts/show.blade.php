@@ -4,14 +4,16 @@
 
 @section('content')
 
-  <h2>{{ $post->title }}</h2>
+    <div class="date text-center" title="{{ $post->created_at }}">{{ $post->created_at->diffForHumans() }}</div>
 
-  <p>{{ $post->created_at->diffForHumans() }}</p>
+    <h2 class="text-center">{{ $post->title }}</h2>
 
-  @if ($post->cover)
-    <p><img src="{{ route('imagecache', ['template' => 'large', 'filename' => $post->cover->file]) }}"></p>
-  @endif
+    @if ($post->cover)
+        <div class="mt-3 mb-3">
+            <img src="{{ $post->cover->src }}">
+        </div>
+    @endif
 
-  {!! $post->body !!}
+    {!! $post->body !!}
 
 @endsection

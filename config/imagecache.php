@@ -51,9 +51,10 @@ return array(
     */
    
     'templates' => array(
-        'small' => 'Intervention\Image\Templates\Small',
-        'medium' => 'Intervention\Image\Templates\Medium',
-        'large' => 'Intervention\Image\Templates\Large',
+        's'  => 'Intervention\Image\Templates\Small',
+        'm'  => 'Intervention\Image\Templates\Medium',
+        'l'  => 'Intervention\Image\Templates\Large',
+        'xl' => 'App\Filters\ExtraLarge'
     ),
 
     /*

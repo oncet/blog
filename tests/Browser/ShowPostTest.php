@@ -22,7 +22,7 @@ class ShowPostTest extends DuskTestCase
         $this->browse(function ($browser) {
             $browser->visit('/posts/foo')
                     ->assertSeeIn('h2', 'Foo')
-                    ->assertSeeIn('p', ' ago')
+                    ->assertSeeIn('.date', ' ago')
                     ->assertDontSee('<p>')
                     ->assertSee('Content.');
         });
@@ -39,7 +39,7 @@ class ShowPostTest extends DuskTestCase
 
         $this->browse(function ($browser) {
             $browser->visit('/posts/foo')
-                    ->assertSourceHas('images/large/foo.jpg');
+                    ->assertSourceHas('images/xl/foo.jpg');
         });
     }
 

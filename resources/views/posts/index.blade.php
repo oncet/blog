@@ -11,7 +11,9 @@
             <h2><a href="{{ route('post.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h2>
 
             @if ($post->cover)
-                <div class="mt-3 mb-3"><a href="{{ route('post.show', ['slug' => $post->slug]) }}"><img src="{{ route('imagecache', ['template' => 'large', 'filename' => $post->cover->file]) }}" alt="{{ $post->cover->alt }}"></a></div>
+                <div class="mt-3 mb-3">
+                    <a href="{{ route('post.show', ['slug' => $post->slug]) }}"><img src="{{ $post->cover->src }}" alt="{{ $post->cover->alt }}"></a>
+                </div>
             @endif
 
             <div class="summary">
