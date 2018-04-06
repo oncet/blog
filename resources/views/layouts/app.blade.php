@@ -12,7 +12,7 @@
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="{{ env('APP_URL') }}">{{ env('APP_NAME') }}</a>
+      <a class="navbar-brand" href="{{ config('app.url') }}">{{ env('APP_NAME') }}</a>
     </nav>
     <div class="container mt-3">
       @yield('content')
