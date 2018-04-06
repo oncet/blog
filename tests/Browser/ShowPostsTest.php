@@ -83,4 +83,16 @@ class ShowPostsTest extends DuskTestCase
                     ->assertSeeIn('.navbar-brand', config('app.name'));
         });
     }
+
+    /** @test */
+    public function it_has_pagination()
+    {
+        factory('App\Models\Post', 10)->create();
+
+        $this->browse(function ($browser) {
+            $browser->visit('/')
+                    ->assertSeeIn('.pagination .page-item.active', 1)
+                    ->assertSeeLink('2');
+        });
+    }
 }
