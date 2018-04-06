@@ -53,4 +53,15 @@ class ShowPostTest extends DuskTestCase
                     ->assertSourceHas('maxcdn.bootstrapcdn.com/bootstrap');
         });
     }
+
+    /** @test */
+    public function titles_contains_site_name()
+    {
+        factory('App\Models\Post')->create(['slug' => 'foo']);
+
+        $this->browse(function ($browser) {
+            $browser->visit('/posts/foo')
+                    ->assertTitleContains(config('app.name'));
+        });
+    }
 }
