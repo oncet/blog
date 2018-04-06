@@ -12,6 +12,9 @@ cache:
 services:
   - postgresql
 
+before_install:
+  - cp .env.dusk.testing .env
+
 install:
   - travis_retry composer install --no-interaction
 
