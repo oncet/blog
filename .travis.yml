@@ -28,3 +28,6 @@ before_script:
 
 script:
   - php artisan dusk
+
+after_script:
+  - cat storage/logs/laravel.log
