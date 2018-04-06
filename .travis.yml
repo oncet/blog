@@ -12,9 +12,6 @@ cache:
 services:
   - postgresql
 
-before_install:
-  - cp .env.travis .env
-
 install:
   - travis_retry composer install --no-interaction
 
