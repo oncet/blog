@@ -13,7 +13,6 @@ class ShowPostsTest extends DuskTestCase
     /** @test */
     public function it_shows_posts_title_and_summary()
     {
-
         factory('App\Models\Post')->create([
             'title' => 'Foo',
             'slug'  => 'foo',
