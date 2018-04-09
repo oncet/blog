@@ -23,6 +23,7 @@ class ShowPostsTest extends DuskTestCase
             $browser->visit('/')
                     ->assertSeeIn('.post h2', 'Foo')
                     ->assertSeeIn('.post .summary', 'Hello world!')
+                    ->assertDontSee('<p>')
                     ->assertSourceHas('/posts/foo');
         });
     }
@@ -38,7 +39,7 @@ class ShowPostsTest extends DuskTestCase
 
         $this->browse(function ($browser) {
             $browser->visit('/')
-                    ->assertSourceHas('images/xl/foo.jpg');
+                    ->assertSourceHas('<img src="' . config('app.url') . '/images/xl/foo.jpg"');
         });
     }
 
@@ -53,14 +54,19 @@ class ShowPostsTest extends DuskTestCase
         $this->browse(function ($browser) {
             $browser->visit('/')
                     ->assertSeeLink('Foo')
-                    ->assertSourceHas(config('app.url') . '/posts/foo');
+                    ->assertSourceHas(config('app.url') . '/posts/foo')
+                    ->clickLink('Foo')
+                    ->assertSeeIn('h2', 'Foo');
         });
     }
 
     /** @test */
     public function image_links_to_post()
     {
-        $post = factory('App\Models\Post')->create(['slug'  => 'foo']);
+        $post = factory('App\Models\Post')->create([
+            'title' => 'Foo',
+            'slug'  => 'foo'
+        ]);
 
         $image = factory('App\Models\Image')->create(['file' => 'foo.jpg']);
 
@@ -69,7 +75,9 @@ class ShowPostsTest extends DuskTestCase
         $this->browse(function ($browser) {
             $browser->visit('/')
                     ->assertSourceHas('images/xl/foo.jpg')
-                    ->assertSourceHas('<a href="' . config('app.url') . '/posts/foo"><img');
+                    ->assertSourceHas('<a href="' . config('app.url') . '/posts/foo"><img')
+                    ->click('a[href="' . config('app.url') . '/posts/foo"]')
+                    ->assertSeeIn('h2', 'Foo');
         });
     }
 
@@ -79,7 +87,9 @@ class ShowPostsTest extends DuskTestCase
         $this->browse(function ($browser) {
             $browser->visit('/')
                     ->assertSeeLink(config('app.name'))
-                    ->assertSeeIn('.navbar-brand', config('app.name'));
+                    ->assertSeeIn('.navbar-brand', config('app.name'))
+                    ->clickLink(config('app.name'))
+                    ->assertPathIs('/');
         });
     }
 
