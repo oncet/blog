@@ -14,10 +14,10 @@
 Route::get('/', 'PostController@index');
 Route::get('posts/{post}', 'PostController@show')->name('post.show');
 
-Route::prefix('admin')->namespace('Admin')->group(function () {
-    Route::prefix('posts')->group(function () {
-        Route::get('/', 'PostController@index')->name('admin.post.index');
-        Route::post('store', 'PostController@store')->name('admin.post.store');
-        Route::view('create', 'admin.posts.create')->name('admin.post.create');
+Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
+    Route::prefix('posts')->name('post.')->group(function () {
+        Route::get('/', 'PostController@index')->name('index');
+        Route::post('store', 'PostController@store')->name('store');
+        Route::view('create', 'admin.posts.create')->name('create');
     });
 });
