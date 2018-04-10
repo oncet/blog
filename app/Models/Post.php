@@ -8,6 +8,7 @@ class Post extends Model
 {
     public $fillable = [
     	'title',
+        'slug',
     	'body'
     ];
 
