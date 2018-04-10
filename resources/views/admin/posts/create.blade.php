@@ -18,6 +18,6 @@
             <textarea class="form-control" id="body" name="body" rows="10"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Create post</button>
-    </form>
+    {!! Form::close() !!}
 
 @endsection
