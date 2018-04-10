@@ -18,7 +18,7 @@ class CreatePostTest extends DuskTestCase
                     ->type('title', 'Foo')
                     ->type('body', '<p>Hello worl!</p>')
                     ->click('.btn-primary')
-                    ->assertSee('Post successful created!');
+                    ->assertSee('Post successfully created!');
         });
     }
 }
