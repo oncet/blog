@@ -2,9 +2,9 @@
 
 namespace Tests\Browser;
 
-use Tests\DuskTestCase;
-use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
 
 class CreatePostTest extends DuskTestCase
 {
@@ -16,9 +16,11 @@ class CreatePostTest extends DuskTestCase
         $this->browse(function ($browser) {
             $browser->visit('/admin/posts/create')
                     ->type('title', 'Foo')
-                    ->type('body', '<p>Hello worl!</p>')
+                    ->keys('#cke_1_contents .cke_wysiwyg_div', 'Hello world!')
                     ->click('.btn-primary')
-                    ->assertSee('Post successfully created!');
+                    ->assertSee('Post successfully created!')
+                    ->visit('/posts/foo')
+                    ->assertSourceHas('<p>Hello world!</p>');
         });
     }
 }
