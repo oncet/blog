@@ -12,7 +12,7 @@ class CreatePostTest extends DuskTestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function create_a_post_without_image()
+    public function create_a_basic_post()
     {
         $this->browse(function ($browser) {
             $browser->visit('/admin/posts/create')
@@ -27,7 +27,7 @@ class CreatePostTest extends DuskTestCase
     }
 
     /** @test */
-    public function create_a_post_with_image()
+    public function create_a_post_with_one_image()
     {
         $this->browse(function ($browser) {
             $browser->visit('/admin/posts/create')
