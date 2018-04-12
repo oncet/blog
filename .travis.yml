@@ -31,3 +31,4 @@ script:
 
 after_script:
   - cat storage/logs/laravel.log
+  - psql -c '\dt' -U postgres
