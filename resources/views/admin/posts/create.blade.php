@@ -4,7 +4,7 @@
 
 @section('content')
 
-    {!! Form::open(['route' => 'admin.post.store']) !!}
+    {!! Form::open(['route' => 'admin.post.store', 'files' => true]) !!}
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Enter a title">
@@ -19,5 +19,15 @@
         </div>
         <button type="submit" class="btn btn-primary">Create post</button>
     {!! Form::close() !!}
+
+@endsection
+
+@section('scripts')
+
+    <script src="{{ url('ckeditor/ckeditor.js') }}"></script>
+
+    <script>
+        CKEDITOR.replace( 'body' );
+    </script>
 
 @endsection
