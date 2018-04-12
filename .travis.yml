@@ -17,6 +17,7 @@ before_install:
 
 install:
   - travis_retry composer install --no-interaction
+  - cat .env
 
 before_script:
   - psql -c 'create database blog;' -U postgres
