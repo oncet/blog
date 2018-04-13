@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Admin;
 
 use App\Models\Post;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
