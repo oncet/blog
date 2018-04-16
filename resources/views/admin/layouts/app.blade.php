@@ -17,9 +17,15 @@
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="{{ route('admin.post.index') }}">{{ config('app.name') }}</a>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('post.index') }}">Go to site &rarr;</a>
+              </li>
+            </ul>
         </nav>
+
         <div class="container mt-3">
             @yield('content')
         </div>

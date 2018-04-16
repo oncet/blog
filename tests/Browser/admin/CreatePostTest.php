@@ -41,4 +41,13 @@ class CreatePostTest extends DuskTestCase
                     ->assertSourceHas('<p>Hello world!</p>');
         });
     }
+
+    /** @test */
+    public function it_contains_link_to_frontend()
+    {
+        $this->browse(function ($browser) {
+            $browser->visit('/admin/posts')
+                    ->assertSee('Go to site');
+        });
+    }
 }

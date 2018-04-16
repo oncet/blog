@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PostController@index');
+Route::get('/', 'PostController@index')->name('post.index');
 Route::get('posts/{post}', 'PostController@show')->name('post.show');
 
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
