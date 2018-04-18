@@ -10,7 +10,7 @@
 
     @if ($post->cover)
         <div class="mt-3 mb-3">
-            <img src="{{ $post->cover->src }}">
+            <img src="{{ $post->cover->getSrc() }}">
         </div>
     @endif
 

@@ -9,7 +9,9 @@ class Post extends Model
     public $fillable = [
     	'title',
         'slug',
-    	'body'
+        'body',
+        'image_file',
+        'image_alt'
     ];
 
     public function getRouteKeyName()
@@ -22,7 +24,7 @@ class Post extends Model
 		return $this->belongsToMany('App\Models\Image');
 	}
 
-	public function getCoverAttribute()
+	public function getImageAttribute()
 	{
 		return optional($this->images)->first();
 	}
@@ -31,4 +33,9 @@ class Post extends Model
 	{
 		return str_limit($this->body, 100);
 	}
+
+    public function getImageSrc($template = 'xl')
+    {
+        return route('imagecache', ['template' => $template, 'filename' => $this->image_file]);
+    }
 }

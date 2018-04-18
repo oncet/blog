@@ -10,9 +10,9 @@
 
             <h2><a href="{{ route('post.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h2>
 
-            @if ($post->cover)
+            @if ($post->image_file)
                 <div class="mt-3 mb-3">
-                    <a href="{{ route('post.show', ['slug' => $post->slug]) }}"><img src="{{ $post->cover->src }}" alt="{{ $post->cover->alt }}"></a>
+                    <a href="{{ route('post.show', ['slug' => $post->slug]) }}"><img src="{{ $post->getImageSrc() }}" alt="{{ $post->image_alt }}"></a>
                 </div>
             @endif
 

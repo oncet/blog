@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -28,12 +28,22 @@ class PostController extends Controller
 
             $name = basename($request->image->store('img'));
 
-            $image = Image::create(['file' => $name]);
+            $post->image_file = $name;
 
-            $post->images()->save($image);
+            $post->save();
         }
 
         return redirect()->route('admin.post.index')
                          ->with('success', 'Post successfully created!');
+    }
+
+    public function edit(Post $post)
+    {
+        return view('admin.posts.edit', compact('post'));
+    }
+
+    public function update(Request $request)
+    {
+        \Log::debug($request->all());
     }
 }
