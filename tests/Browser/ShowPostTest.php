@@ -13,16 +13,16 @@ class ShowPostTest extends DuskTestCase
     /** @test */
     public function it_shows_post_title_body_and_date()
     {
-        factory('App\Models\Post')->create([
+        $post = factory('App\Models\Post')->create([
             'title' => 'Foo',
             'slug'  => 'foo',
             'body'  => '<p>Content.</p>'
         ]);
 
-        $this->browse(function ($browser) {
+        $this->browse(function ($browser) use($post) {
             $browser->visit('/posts/foo')
                     ->assertSeeIn('h2', 'Foo')
-                    ->assertSeeIn('.date', ' ago')
+                    ->assertSourceHas($post->created_at->toDateTimeString())
                     ->assertDontSee('<p>')
                     ->assertSee('Content.');
         });
