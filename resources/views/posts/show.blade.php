@@ -8,9 +8,9 @@
 
     <h2 class="text-center">{{ $post->title }}</h2>
 
-    @if ($post->cover)
+    @if ($post->image_file)
         <div class="mt-3 mb-3">
-            <img src="{{ $post->cover->getSrc() }}">
+            <img src="{{ $post->getImageSrc() }}">
         </div>
     @endif
 
