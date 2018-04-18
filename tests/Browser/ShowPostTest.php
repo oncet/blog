@@ -31,11 +31,10 @@ class ShowPostTest extends DuskTestCase
     /** @test */
     public function it_shows_post_image()
     {
-        $post = factory('App\Models\Post')->create(['slug'  => 'foo']);
-
-        $image = factory('App\Models\Image')->create(['file' => 'foo.jpg']);
-
-        $post->images()->save($image);
+        factory('App\Models\Post')->create([
+            'slug'  => 'foo',
+            'image_file' => 'foo.jpg'
+        ]);
 
         $this->browse(function ($browser) {
             $browser->visit('/posts/foo')
