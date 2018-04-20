@@ -37,7 +37,7 @@ class CreatePostTest extends DuskTestCase
                     ->click('.btn-primary')
                     ->assertSee('Post successfully created!')
                     ->visit('/posts/foo')
-                    ->assertSourceHas(config('app.url') . '/images/xl/' . Post::first()->cover->file)
+                    ->assertSourceHas(config('app.url') . '/images/xl/' . Post::first()->image_file)
                     ->assertSourceHas('<p>Hello world!</p>');
         });
     }
