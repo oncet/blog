@@ -29,4 +29,5 @@ script:
   - php artisan dusk
 
 after_script:
+  - php -m
   - cat storage/logs/laravel.log
