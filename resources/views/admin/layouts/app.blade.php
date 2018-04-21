@@ -18,10 +18,13 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{ route('admin.post.index') }}">{{ config('app.name') }}</a>
+            <a class="navbar-brand" href="{{ route('post.index') }}">{{ config('app.name') }}</a>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('post.index') }}">Go to site &rarr;</a>
+                <a class="nav-link" href="{{ route('admin.post.index') }}">View posts</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.post.create') }}">Create post</a>
               </li>
             </ul>
         </nav>

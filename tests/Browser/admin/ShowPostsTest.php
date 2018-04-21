@@ -58,4 +58,24 @@ class ShowPostsTest extends DuskTestCase
                     ->assertPathIs('/admin/posts/foo/edit');
         });
     }
+
+    /** @test */
+    public function it_has_link_to_create_post()
+    {
+        $this->browse(function ($browser) {
+            $browser->visit('/admin/posts')
+                    ->clickLink('Create post')
+                    ->assertPathIs('/admin/posts/create');
+        });
+    }
+
+    /** @test */
+    public function it_has_link_to_posts_list()
+    {
+        $this->browse(function ($browser) {
+            $browser->visit('/admin/posts')
+                    ->clickLink('View posts')
+                    ->assertPathIs('/admin/posts');
+        });
+    }
 }
