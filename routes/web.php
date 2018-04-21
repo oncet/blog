@@ -15,6 +15,7 @@ Route::get('/', 'PostController@index')->name('post.index');
 Route::get('posts/{post}', 'PostController@show')->name('post.show');
 
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
+    Route::redirect('/', '/admin/posts', 301);
     Route::prefix('posts')->name('post.')->group(function () {
         Route::get('/', 'PostController@index')->name('index');
         Route::post('store', 'PostController@store')->name('store');
