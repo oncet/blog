@@ -4,6 +4,8 @@
 
 @section('content')
 
+    <h3>Create a new post</h3>
+
     {!! Form::open(['route' => 'admin.post.store', 'files' => true]) !!}
 
         <div class="form-group">
