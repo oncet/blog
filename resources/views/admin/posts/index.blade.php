@@ -4,13 +4,13 @@
 
 @section('content')
 
-    <h3>Posts list</h3>
-
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
+
+    <h3>Posts list</h3>
 
     <table id="posts">
         <thead>
