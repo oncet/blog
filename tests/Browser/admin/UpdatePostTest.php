@@ -100,4 +100,17 @@ class UpdatePostTest extends DuskTestCase
                     ->assertSourceHas(config('app.url') . '/images/l/' . Post::first()->image_file);
         });
     }
+
+    /** @test */
+    public function it_has_view_post_link()
+    {
+        factory('App\Models\Post')->create(['slug'  => 'foo']);
+
+        $this->browse(function ($browser) {
+
+            $browser->visit('/admin/posts/foo/edit')
+                    ->click('h3 .btn')
+                    ->assertPathIs('/posts/foo');
+        });
+    }
 }

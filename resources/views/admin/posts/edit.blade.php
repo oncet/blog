@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Update post')
+@section('title', 'Edit post')
 
 @section('content')
 
-    <h3>Edit post</h3>
+    <h3>Edit post <a class="btn btn-info" href="{{ route('post.show', $post) }}" role="button">View post</a></h3>
 
     {!! Form::model($post, ['route' => ['admin.post.update', $post], 'method' => 'put', 'files' => true]) !!}
 
