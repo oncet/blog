@@ -47,7 +47,8 @@ class CreatePostTest extends DuskTestCase
     {
         $this->browse(function ($browser) {
             $browser->visit('/admin/posts')
-                    ->assertSee('Go to site');
+                    ->clickLink(config('app.name'))
+                    ->assertPathIs('/');
         });
     }
 }

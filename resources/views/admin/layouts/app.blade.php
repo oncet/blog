@@ -20,10 +20,10 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="{{ route('post.index') }}">{{ config('app.name') }}</a>
             <ul class="navbar-nav">
-              <li class="nav-item">
+              <li class="{{ $route ==  '/admin/posts' ? 'active' : ''  }} nav-item">
                 <a class="nav-link" href="{{ route('admin.post.index') }}">View posts</a>
               </li>
-              <li class="nav-item">
+              <li class="{{ $route ==  '/admin/posts/create' ? 'active' : ''  }} nav-item">
                 <a class="nav-link" href="{{ route('admin.post.create') }}">Create post</a>
               </li>
             </ul>
