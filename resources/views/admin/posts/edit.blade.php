@@ -48,12 +48,16 @@
                     </div>
                 @endif
 
-                <p class="text-right"><button type="submit" class="btn btn-primary mt-3">Update post</button></p>
+                <p class="text-right mt-3"><button type="submit" class="btn btn-primary">Update post</button></p>
 
             </div>
 
         </div>
 
+    {!! Form::close() !!}
+
+    {!! Form::open(['route' => ['admin.post.destroy', $post], 'method' => 'delete']) !!}
+        <p><button type="submit" class="btn btn-danger">Delete post</button></p>
     {!! Form::close() !!}
 
 @endsection

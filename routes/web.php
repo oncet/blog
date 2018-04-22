@@ -22,5 +22,6 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
         Route::view('create', 'admin.posts.create')->name('create');
         Route::get('{post}/edit', 'PostController@edit')->name('edit');
         Route::put('{post}', 'PostController@update')->name('update');
+        Route::delete('{post}', 'PostController@destroy')->name('destroy');
     });
 });
