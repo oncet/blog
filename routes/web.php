@@ -24,5 +24,6 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
         Route::put('{trashed_post}', 'PostController@update')->name('update');
         Route::delete('{post}', 'PostController@destroy')->name('destroy');
         Route::put('/restore/{trashed_post}', 'PostController@restore')->name('restore');
+        Route::delete('/delete/{trashed_post}', 'PostController@delete')->name('delete');
     });
 });

@@ -85,4 +85,16 @@ class PostController extends Controller
         return redirect()->route('admin.post.index')
                          ->with('success', 'Post successfully restored!');
     }
+
+    public function delete(Post $trashed_post)
+    {
+        $trashed_post->forceDelete();
+
+        if ($trashed_post->image_file) {
+            Storage::delete('img/' . $trashed_post->image_file);
+        }
+
+        return redirect()->route('admin.post.index')
+                         ->with('success', 'Post permanently deleted!');
+    }
 }
