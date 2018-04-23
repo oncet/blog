@@ -48,7 +48,7 @@
                     </div>
                 @endif
 
-                <p class="text-right mt-3"><button type="submit" class="btn btn-primary">Update post</button></p>
+                <p class="text-right mt-3"><button type="submit" id="update_post" class="btn btn-primary">Update post</button></p>
 
             </div>
 

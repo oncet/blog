@@ -32,7 +32,7 @@
             {!! Form::textarea('body', null, ['id' => 'body', 'name' => 'body', 'class' => 'form-control']); !!}
         </div>
 
-        <p><button type="submit" class="btn btn-primary">Create post</button></p>
+        <p><button type="submit" id="create_post" class="btn btn-primary">Create post</button></p>
 
     {!! Form::close() !!}
 
