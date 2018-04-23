@@ -22,10 +22,29 @@ class DeletePostTest extends DuskTestCase
         $this->browse(function ($browser) {
 
             $browser->visit('/admin/posts/foo/edit')
-                    ->click('.btn-danger')
+                    ->click('#delete_post')
                     ->assertSee('Post successfully deleted!')
-                    ->clickLink('Restore')
-                    ->assertSee('Post successfully restored!');
+                    ->clickLink('Foo')
+                    ->click('#restore_post');
+        });
+    }
+
+    /** @test */
+    public function it_permanently_deletes_a_post()
+    {
+        factory('App\Models\Post')->create([
+            'title' => 'Foo',
+            'slug'  => 'foo'
+        ]);
+
+        $this->browse(function ($browser) {
+
+            $browser->visit('/admin/posts/foo/edit')
+                    ->click('#delete_post')
+                    ->assertSee('Post successfully deleted!')
+                    ->clickLink('Foo')
+                    ->click('#permanently_delete_post')
+                    ->assertSee('Post permanently deleted!');
         });
     }
 }

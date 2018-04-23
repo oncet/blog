@@ -58,15 +58,15 @@
 
     @if(!$post->deleted_at)
         {!! Form::open(['route' => ['admin.post.destroy', $post], 'method' => 'delete']) !!}
-            <p><button type="submit" class="btn btn-danger">Delete post</button></p>
+            <p><button type="submit" id="delete_post" class="btn btn-danger">Delete post</button></p>
         {!! Form::close() !!}
     @else
         {!! Form::open(['route' => ['admin.post.restore', $post], 'method' => 'put']) !!}
-            <p><button type="submit" class="btn btn-secondary">Restore post</button></p>
+            <p><button type="submit" id="restore_post" class="btn btn-secondary">Restore post</button></p>
         {!! Form::close() !!}
 
         {!! Form::open(['route' => ['admin.post.delete', $post], 'method' => 'delete']) !!}
-            <p><button type="submit" class="btn btn-danger">Permanently delete post</button></p>
+            <p><button type="submit" id="permanently_delete_post" class="btn btn-danger">Permanently delete post</button></p>
         {!! Form::close() !!}
     @endif
 
