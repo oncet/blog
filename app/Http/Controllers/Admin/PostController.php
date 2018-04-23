@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        $posts = Post::orderBy('id', 'desc')->withTrashed()->paginate(10);
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -76,5 +76,13 @@ class PostController extends Controller
 
         return redirect()->route('admin.post.index')
                          ->with('success', 'Post successfully deleted!');
+    }
+
+    public function restore(Post $trashed_post)
+    {
+        $trashed_post->restore();
+
+        return redirect()->route('admin.post.index')
+                         ->with('success', 'Post successfully restored!');
     }
 }

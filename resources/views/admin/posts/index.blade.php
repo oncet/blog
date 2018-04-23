@@ -12,20 +12,22 @@
 
     <h3>Posts list</h3>
 
-    <table id="posts">
+    <table id="posts" class="table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Title</th>
                 <th>Created</th>
+                <th>Deleted</th>
             </tr>
         </thead>
         <tbody>
             @foreach($posts as $post)
-                <tr>
+                <tr @if($post->deleted_at) class="table-danger" @endif>
                     <td>{{ $post->id }}</td>
                     <td><a href="{{ route('admin.post.edit', $post->slug) }}">{{ $post->title }}</a></td>
                     <td>{{ $post->created_at }}</td>
+                    <td>{{ $post->deleted_at }}</td>
                 </tr>
             @endforeach
         </tbody>

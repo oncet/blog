@@ -12,7 +12,7 @@ class DeletePostTest extends DuskTestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function it_deletes_a_post()
+    public function it_deletes_and_restores_a_post()
     {
         factory('App\Models\Post')->create([
             'title' => 'Foo',
@@ -24,7 +24,8 @@ class DeletePostTest extends DuskTestCase
             $browser->visit('/admin/posts/foo/edit')
                     ->click('.btn-danger')
                     ->assertSee('Post successfully deleted!')
-                    ->assertDontSee('Foo');
+                    ->clickLink('Restore')
+                    ->assertSee('Post successfully restored!');
         });
     }
 }

@@ -20,8 +20,9 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
         Route::get('/', 'PostController@index')->name('index');
         Route::post('store', 'PostController@store')->name('store');
         Route::view('create', 'admin.posts.create')->name('create');
-        Route::get('{post}/edit', 'PostController@edit')->name('edit');
-        Route::put('{post}', 'PostController@update')->name('update');
+        Route::get('{trashed_post}/edit', 'PostController@edit')->name('edit');
+        Route::put('{trashed_post}', 'PostController@update')->name('update');
         Route::delete('{post}', 'PostController@destroy')->name('destroy');
+        Route::put('/restore/{trashed_post}', 'PostController@restore')->name('restore');
     });
 });
