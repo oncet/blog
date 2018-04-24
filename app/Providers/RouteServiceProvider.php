@@ -24,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::bind('trashed_post', function ($slug) {
-            return \App\Models\Post::withTrashed()->where('slug', $slug)->first();
+            return \App\Models\Post::withTrashed()->where('slug', $slug)->firstOrFail();
         });
 
         parent::boot();
