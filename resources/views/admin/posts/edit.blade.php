@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h3>Edit post <a class="btn btn-info" href="{{ route('post.show', $post) }}" role="button">View post</a></h3>
+    <h3>Edit post @if(!$post->deleted_at) <a class="btn btn-info" href="{{ route('post.show', $post) }}" role="button">View post</a>@else <small><span class="badge badge-info">Deleted</span></small> @endif</h3>
 
     {!! Form::model($post, ['route' => ['admin.post.update', $post], 'method' => 'put', 'files' => true]) !!}
 
