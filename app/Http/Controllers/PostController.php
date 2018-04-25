@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function show(Post $post)
+    public function show(Post $public_post)
     {
-        return view('posts.show', compact('post'));
+        return view('posts.show', ['post' => $public_post]);
     }
 
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(4);
+        $posts = Post::orderBy('created_at', 'desc')->where('draft', false)->paginate(4);
 
         return view('posts.index', compact('posts'));
     }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -47,19 +46,23 @@ class PostController extends Controller
     {
         $post->fill($request->all());
 
+        if (!$request->input('draft')) {
+            $post->draft = false;
+        }
+
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
             $name = basename($request->image->store('img'));
 
             if ($post->image_file) {
-                Storage::delete('img/' . $post->image_file);
+                $post->deleteImageFile();
             }
 
             $post->image_file = $name;
 
         } elseif ($request->input('delete_image') == 'yes') {
 
-            Storage::delete('img/' . $post->image_file);
+            $post->deleteImageFile();
 
             $post->image_file = null;
         }
@@ -78,20 +81,20 @@ class PostController extends Controller
                          ->with('success', 'Post successfully deleted!');
     }
 
-    public function restore(Post $trashed_post)
+    public function restore(Post $private_post)
     {
-        $trashed_post->restore();
+        $private_post->restore();
 
         return redirect()->route('admin.post.index')
                          ->with('success', 'Post successfully restored!');
     }
 
-    public function delete(Post $trashed_post)
+    public function delete(Post $private_post)
     {
-        $trashed_post->forceDelete();
+        $private_post->forceDelete();
 
-        if ($trashed_post->image_file) {
-            Storage::delete('img/' . $trashed_post->image_file);
+        if ($private_post->image_file) {
+            $private_post->deleteImageFile();
         }
 
         return redirect()->route('admin.post.index')

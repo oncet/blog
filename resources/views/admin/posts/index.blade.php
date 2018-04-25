@@ -17,16 +17,20 @@
             <tr>
                 <th>ID</th>
                 <th>Title</th>
+                <th>Draft</th>
                 <th>Created</th>
+                <th>Updated</th>
                 <th>Deleted</th>
             </tr>
         </thead>
         <tbody>
             @foreach($posts as $post)
-                <tr @if($post->deleted_at) class="table-danger" @endif>
+                <tr class="@if($post->deleted_at) table-danger @elseif($post->draft) table-info @endif">
                     <td>{{ $post->id }}</td>
                     <td><a href="{{ route('admin.post.edit', $post->slug) }}">{{ $post->title }}</a></td>
+                    <td>{{ $post->draft_text }}</td>
                     <td>{{ $post->created_at }}</td>
+                    <td>{{ $post->updated_at }}</td>
                     <td>{{ $post->deleted_at }}</td>
                 </tr>
             @endforeach

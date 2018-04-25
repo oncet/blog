@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h3>Edit post @if(!$post->deleted_at) <a class="btn btn-info" href="{{ route('post.show', $post) }}" role="button">View post</a>@else <small><span class="badge badge-info">Deleted</span></small> @endif</h3>
+    <h3>Edit post @if(!$post->deleted_at && !$post->draft) <a class="btn btn-info" href="{{ route('post.show', $post) }}" role="button">View post</a> @elseif($post->deleted_at) <small><span class="badge badge-info">Deleted</span></small> @elseif($post->draft) <small><span class="badge badge-info">Draft</span></small> @endif</h3>
 
     {!! Form::model($post, ['route' => ['admin.post.update', $post], 'method' => 'put', 'files' => true]) !!}
 
@@ -48,7 +48,7 @@
                     </div>
                 @endif
 
-                <p class="text-right mt-3"><button type="submit" id="update_post" class="btn btn-primary">Update post</button></p>
+                <p class="text-right mt-3">{!! Form::checkbox('draft', true, null, ['id' => 'draft']) !!} <label for="draft" class="mr-3">Draft?</label> <button type="submit" id="update_post" class="btn btn-primary">Update post</button></p>
 
             </div>
 

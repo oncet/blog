@@ -44,6 +44,28 @@ class ShowPostsTest extends DuskTestCase
     }
 
     /** @test */
+    public function create_draft_post()
+    {
+        $this->browse(function ($browser) {
+            $browser->visit('/admin/posts/create')
+                    ->type('title', 'My first post')
+                    ->keys('#cke_1_contents .cke_wysiwyg_div', 'Hello world!')
+                    ->check('draft')
+                    ->click('#create_post')
+                    ->visit('/posts/my-first-post')
+                    ->assertSee('Sorry, the page you are looking for could not be found.')
+                    ->visit('/admin/posts')
+                    ->clickLink('My first post')
+                    ->uncheck('draft')
+                    ->click('#update_post')
+                    ->assertSee('Post successfully updated!')
+                    ->visit('/posts/my-first-post')
+                    ->assertSee('My first post')
+                    ->assertSee('Hello world!');
+        });
+    }
+
+    /** @test */
     public function update_a_post()
     {
         $this->browse(function ($browser) {

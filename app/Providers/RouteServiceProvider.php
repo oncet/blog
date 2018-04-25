@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Route;
+use App\Models\Post;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -23,8 +24,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::bind('trashed_post', function ($slug) {
-            return \App\Models\Post::withTrashed()->where('slug', $slug)->firstOrFail();
+        Route::bind('public_post', function ($slug) {
+            return Post::where('slug', $slug)->where('draft', false)->firstOrFail();
+        });
+
+        Route::bind('private_post', function ($slug) {
+            return Post::withTrashed()->where('slug', $slug)->firstOrFail();
         });
 
         parent::boot();
