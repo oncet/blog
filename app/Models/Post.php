@@ -20,14 +20,14 @@ class Post extends Model
     ];
 
     public function getRouteKeyName()
-	{
-	    return 'slug';
-	}
+    {
+        return 'slug';
+    }
 
-	public function getSummaryAttribute()
-	{
-		return str_limit($this->body, 100);
-	}
+    public function getSummaryAttribute()
+    {
+        return str_limit($this->body, 100);
+    }
 
     public function getDraftTextAttribute()
     {
