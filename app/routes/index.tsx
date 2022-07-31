@@ -10,6 +10,7 @@ export const loader = async () => {
   const data = {
     posts: await db.post.findMany(),
   };
+
   return json(data);
 };
 
