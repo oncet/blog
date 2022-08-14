@@ -9,6 +9,12 @@ import {
   useCatch,
 } from "@remix-run/react";
 
+import styles from "./styles/app.css";
+
+export function links() {
+  return [{ rel: "stylesheet", href: styles }];
+}
+
 export const meta: MetaFunction = () => {
   return {
     charset: "utf-8",
@@ -23,16 +29,16 @@ export function CatchBoundary() {
   return (
     <html lang="en">
       <head>
-        <Meta />
+        {/* TODO Don't know how to overwrite <Meta /> title */}
+        <meta charSet="utf-8" />
+        <title>{caught.data}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Links />
       </head>
-      <body style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
+      <body>
         <div>
-          <h1>Caught</h1>
-          <p>Status: {caught.status}</p>
-          <pre>
-            <code>{JSON.stringify(caught.data, null, 2)}</code>
-          </pre>
+          <h1>{caught.data}</h1>
+          <p>Whoops! Sorry.</p>
         </div>
       </body>
     </html>
@@ -41,12 +47,12 @@ export function CatchBoundary() {
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <Meta />
         <Links />
       </head>
-      <body style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
+      <body className="px-5 py-2 flex flex-col gap-4 bg-white text-black dark:bg-black dark:text-white">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

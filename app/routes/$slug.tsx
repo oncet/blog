@@ -1,7 +1,8 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useCatch, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import type { Post } from "@prisma/client";
+import { marked } from "marked";
 
 import { db } from "~/utils/db.server";
 
@@ -18,7 +19,10 @@ export const loader: LoaderFunction = async ({ params }) => {
     });
   }
 
-  return json(post);
+  return json({
+    ...post,
+    body: marked(post.body),
+  });
 };
 
 export default function Slug() {

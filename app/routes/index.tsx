@@ -18,10 +18,10 @@ export default function Index() {
   const { posts } = useLoaderData<LoaderData>();
 
   return (
-    <div>
+    <>
       <h1>Blog</h1>
       {posts && (
-        <ul>
+        <ul className="list-disc list-inside px-2">
           {posts.map((post) => (
             <li key={post.id}>
               <Link to={post.slug}>{post.title}</Link>
@@ -29,6 +29,6 @@ export default function Index() {
           ))}
         </ul>
       )}
-    </div>
+    </>
   );
 }
