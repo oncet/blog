@@ -28,10 +28,17 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function Slug() {
   const { title, body } = useLoaderData<Post>();
 
+  const createMarkup = () => {
+    return { __html: body };
+  };
+
   return (
     <>
       <h1>{title}</h1>
-      {body}
+      <div
+        className="flex flex-col gap-4"
+        dangerouslySetInnerHTML={createMarkup()}
+      />
     </>
   );
 }
