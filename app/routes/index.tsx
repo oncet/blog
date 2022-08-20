@@ -8,7 +8,13 @@ type LoaderData = { posts: Array<Post> };
 
 export const loader = async () => {
   const data = {
-    posts: await db.post.findMany(),
+    posts: await db.post.findMany({
+      where: {
+        publishedAt: {
+          not: undefined,
+        },
+      },
+    }),
   };
 
   return json(data);

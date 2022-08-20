@@ -13,8 +13,8 @@ model Post {
   slug        String    @db.VarChar
   body        String
   categoryId  Int?
-  publishedAt DateTime? @db.Timestamptz(6)
-  createdAt   DateTime? @default(now()) @db.Timestamptz(6)
+  publishedAt DateTime @db.Timestamptz(6)
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
   category    Category? @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
@@ -22,6 +22,5 @@ model Category {
   id        Int       @id @default(autoincrement())
   name      String    @db.VarChar
   slug      String    @db.VarChar
-  createdAt DateTime? @default(now()) @db.Timestamptz(6)
   posts     Post[]
 }
