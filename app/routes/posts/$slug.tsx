@@ -45,12 +45,14 @@ export default function Slug() {
 
   return (
     <>
-      {!!category && (
-        <p>
-          <Link to={"/category/" + category.slug}>{category.name}</Link>
-        </p>
-      )}
-      <h1>{title}</h1>
+      <div>
+        {!!category && (
+          <p>
+            <Link to={"/category/" + category.slug}>{category.name}</Link>
+          </p>
+        )}
+        <h1>{title}</h1>
+      </div>
       <div
         className="flex flex-col gap-4"
         dangerouslySetInnerHTML={createMarkup()}

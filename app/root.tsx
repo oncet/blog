@@ -31,7 +31,6 @@ export function CatchBoundary() {
   return (
     // TODO Change meta title depending on caught data
     <Layout>
-      <Header />
       <div className="flex flex-col gap-4">
         <h1>Whoops!</h1>
         <p>{caught.data || "Not found, sorry."}</p>
