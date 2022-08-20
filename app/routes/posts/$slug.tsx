@@ -28,8 +28,6 @@ export const loader: LoaderFunction = async ({ params }) => {
     });
   }
 
-  console.log(post);
-
   return json({
     ...post,
     body: marked(post.body),
