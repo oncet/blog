@@ -19,12 +19,12 @@ export default function Index() {
 
   return (
     <>
-      <h1>Blog</h1>
+      <h1>Oncet's blog</h1>
       {posts && (
         <ul className="list-disc list-inside px-2">
           {posts.map((post) => (
             <li key={post.id}>
-              <Link to={post.slug}>{post.title}</Link>
+              <Link to={"posts/" + post.slug}>{post.title}</Link>
             </li>
           ))}
         </ul>
