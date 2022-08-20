@@ -8,9 +8,10 @@ import {
   ScrollRestoration,
   useCatch,
 } from "@remix-run/react";
-import styles from "./styles/app.css";
 
-import Layout from "./components/Layout";
+import styles from "~/styles/app.css";
+import Header from "~/components/Header";
+import Layout from "~/components/Layout";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -30,9 +31,10 @@ export function CatchBoundary() {
   return (
     // TODO Change meta title depending on caught data
     <Layout>
-      <div>
-        <h1>{caught.data}</h1>
-        <p>Whoops! Sorry.</p>
+      <Header />
+      <div className="flex flex-col gap-4">
+        <h1>Whoops!</h1>
+        <p>{caught.data || "Not found, sorry."}</p>
       </div>
     </Layout>
   );

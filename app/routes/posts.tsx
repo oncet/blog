@@ -1,15 +1,11 @@
-import { Link, Outlet } from "@remix-run/react";
+import { Outlet } from "@remix-run/react";
+
+import Header from "~/components/Header";
 
 export default function Index() {
   return (
     <>
-      <header>
-        <div>
-          <Link className="font-bold" to="/">
-            Oncet's blog
-          </Link>
-        </div>
-      </header>
+      <Header />
       <Outlet />
     </>
   );
