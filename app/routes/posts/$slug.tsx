@@ -1,15 +1,24 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import type { Post } from "@prisma/client";
+import { Link, useLoaderData } from "@remix-run/react";
+import type { Prisma } from "@prisma/client";
 import { marked } from "marked";
 
 import { db } from "~/utils/db.server";
+
+type PostWithCategory = Prisma.PostGetPayload<{
+  include: {
+    category: true;
+  };
+}>;
 
 export const loader: LoaderFunction = async ({ params }) => {
   const post = await db.post.findFirst({
     where: {
       slug: params.slug,
+    },
+    include: {
+      category: true,
     },
   });
 
@@ -19,6 +28,8 @@ export const loader: LoaderFunction = async ({ params }) => {
     });
   }
 
+  console.log(post);
+
   return json({
     ...post,
     body: marked(post.body),
@@ -26,7 +37,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export default function Slug() {
-  const { title, body } = useLoaderData<Post>();
+  const { title, body, category } = useLoaderData<PostWithCategory>();
 
   const createMarkup = () => {
     return { __html: body };
@@ -34,6 +45,11 @@ export default function Slug() {
 
   return (
     <>
+      {!!category && (
+        <p>
+          <Link to={"/category/" + category.slug}>{category.name}</Link>
+        </p>
+      )}
       <h1>{title}</h1>
       <div
         className="flex flex-col gap-4"

@@ -21,7 +21,7 @@ model Post {
 model Category {
   id        Int       @id @default(autoincrement())
   name      String    @db.VarChar
-  slug      String?   @db.VarChar
+  slug      String    @db.VarChar
   createdAt DateTime? @default(now()) @db.Timestamptz(6)
   posts     Post[]
 }

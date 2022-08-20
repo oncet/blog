@@ -5,7 +5,9 @@ export default function Index() {
     <>
       <header>
         <div>
-          <Link to="/">Oncet's blog</Link>
+          <Link className="font-bold" to="/">
+            Oncet's blog
+          </Link>
         </div>
       </header>
       <Outlet />

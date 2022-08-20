@@ -12,4 +12,7 @@
   ul {
     @apply list-disc list-inside flex flex-col gap-4;
   }
+  a {
+    @apply text-cyan-500 hover:underline;
+  }
 }
