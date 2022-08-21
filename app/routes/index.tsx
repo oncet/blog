@@ -35,10 +35,12 @@ export default function Index() {
                 to={"posts/" + post.slug}
                 className="flex flex-col gap-2 hover:no-underline"
               >
-                <h2 className="font-bold">{post.title}</h2>
-                <p className="text-slate-500">
-                  {format(new Date(post.publishedAt), "dd/MM/yyyy")}
-                </p>
+                <div>
+                  <p className="text-slate-500">
+                    {format(new Date(post.publishedAt), "dd/MM/yyyy")}
+                  </p>
+                  <h2 className="font-bold">{post.title}</h2>
+                </div>
                 <img src={post.image} alt={post.title} />
               </Link>
             </li>
