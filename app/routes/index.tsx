@@ -3,6 +3,7 @@ import { useLoaderData, Link } from "@remix-run/react";
 import type { Post } from "@prisma/client";
 
 import { db } from "~/utils/db.server";
+import { format } from "date-fns";
 
 type LoaderData = { posts: Array<Post> };
 
@@ -27,10 +28,19 @@ export default function Index() {
     <>
       <h1>Oncet's blog</h1>
       {posts && (
-        <ul className="list-disc list-inside px-2">
+        <ul className="list-none">
           {posts.map((post) => (
             <li key={post.id}>
-              <Link to={"posts/" + post.slug}>{post.title}</Link>
+              <Link
+                to={"posts/" + post.slug}
+                className="flex flex-col gap-2 hover:no-underline"
+              >
+                <h2 className="font-bold">{post.title}</h2>
+                <p className="text-slate-500">
+                  {format(new Date(post.publishedAt), "dd/MM/yyyy")}
+                </p>
+                <img src={post.image} alt={post.title} />
+              </Link>
             </li>
           ))}
         </ul>
