@@ -57,7 +57,7 @@ export default function Slug() {
             <Link to={"/category/" + category.slug}>{category.name}</Link>
           </p>
         )}
-        <h1>{title}</h1>
+        <h1 className="font-bold">{title}</h1>
       </div>
       <div
         className="flex flex-col gap-4"
