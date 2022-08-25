@@ -35,7 +35,7 @@ export default function Category() {
 
   return (
     <>
-      <h1 className="font-bold">{name}</h1>
+      <h1>{name}</h1>
       {posts && (
         <ul>
           {posts.map((post) => (

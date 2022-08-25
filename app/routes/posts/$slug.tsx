@@ -45,7 +45,7 @@ export const meta: MetaFunction = ({ data }) => {
 };
 
 export default function Slug() {
-  const { title, body, category, publishedAt } =
+  const { title, body, category, image, publishedAt } =
     useLoaderData<PostWithCategory>();
 
   const createMarkup = () => {
@@ -54,21 +54,25 @@ export default function Slug() {
 
   return (
     <>
-      <div>
-        <p className="text-slate-500">
-          {format(new Date(publishedAt), "dd/MM/yyyy")}
-        </p>
-        {!!category && (
-          <p>
-            <Link to={"/category/" + category.slug}>{category.name}</Link>
-          </p>
-        )}
-        <h1 className="font-bold">{title}</h1>
-      </div>
+      <h1>{title}</h1>
+      <p className="text-slate-500">
+        {format(new Date(publishedAt), "dd/MM/yyyy")}
+      </p>
+      <img src={image} alt={title} />
       <div
         className="flex flex-col gap-4"
         dangerouslySetInnerHTML={createMarkup()}
       />
+      {!!category && (
+        <p className="mb-4 text-right">
+          <Link
+            className="bg-slate-800 py-1 px-2"
+            to={"/category/" + category.slug}
+          >
+            {category.name}
+          </Link>
+        </p>
+      )}
     </>
   );
 }

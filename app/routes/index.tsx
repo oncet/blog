@@ -33,14 +33,12 @@ export default function Index() {
             <li key={post.id}>
               <Link
                 to={"posts/" + post.slug}
-                className="flex flex-col gap-2 hover:no-underline"
+                className="flex flex-col gap-4 hover:no-underline"
               >
-                <div>
-                  <p className="text-slate-500">
-                    {format(new Date(post.publishedAt), "dd/MM/yyyy")}
-                  </p>
-                  <h2 className="font-bold">{post.title}</h2>
-                </div>
+                <h2>{post.title}</h2>
+                <p className="text-slate-500">
+                  {format(new Date(post.publishedAt), "dd/MM/yyyy")}
+                </p>
                 <img src={post.image} alt={post.title} />
               </Link>
             </li>
