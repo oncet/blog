@@ -30,16 +30,24 @@ export default function Index() {
       <h1>Oncet's blog</h1>
       {posts && (
         <ul className="list-none">
-          {posts.map((post) => (
-            <li key={post.id}>
-              <Link
-                to={"post/" + post.slug}
-                className="flex flex-col gap-4 hover:no-underline"
-              >
-                <PostCard post={post} />
-              </Link>
-            </li>
-          ))}
+          {posts.map((post) => {
+            return (
+              <li key={post.id}>
+                <Link
+                  to={"post/" + post.slug}
+                  className="flex flex-col gap-4 hover:no-underline"
+                >
+                  <PostCard
+                    post={{
+                      ...post,
+                      publishedAt: new Date(post.publishedAt),
+                      createdAt: new Date(post.createdAt),
+                    }}
+                  />
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       )}
     </>
