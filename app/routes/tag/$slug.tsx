@@ -1,4 +1,4 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import type { Prisma } from "@prisma/client";
@@ -6,7 +6,7 @@ import { format } from "date-fns";
 
 import { db } from "~/utils/db.server";
 
-type CategoryWithPosts = Prisma.CategoryGetPayload<{
+type TagWithPosts = Prisma.TagGetPayload<{
   include: {
     posts: true;
   };
@@ -31,8 +31,14 @@ export const loader: LoaderFunction = async ({ params }) => {
   return json(tag);
 };
 
-export default function Category() {
-  const { name, posts } = useLoaderData<CategoryWithPosts>();
+export const meta: MetaFunction = ({ data }) => {
+  return {
+    title: data ? data.name : "Tag not found",
+  };
+};
+
+export default function Tag() {
+  const { name, posts } = useLoaderData<TagWithPosts>();
 
   return (
     <>

@@ -1,4 +1,4 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import type { Prisma } from "@prisma/client";
@@ -29,6 +29,12 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 
   return json(category);
+};
+
+export const meta: MetaFunction = ({ data }) => {
+  return {
+    title: data ? data.name : "Category not found",
+  };
 };
 
 export default function Category() {
