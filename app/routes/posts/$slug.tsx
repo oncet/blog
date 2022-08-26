@@ -10,6 +10,7 @@ import { db } from "~/utils/db.server";
 type PostWithCategory = Prisma.PostGetPayload<{
   include: {
     category: true;
+    tags: true;
   };
 }>;
 
@@ -23,6 +24,7 @@ export const loader: LoaderFunction = async ({ params }) => {
     },
     include: {
       category: true,
+      tags: true,
     },
   });
 
@@ -40,12 +42,12 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export const meta: MetaFunction = ({ data }) => {
   return {
-    title: data.title,
+    title: data ? data.title : "Post not found",
   };
 };
 
 export default function Slug() {
-  const { title, body, category, image, publishedAt } =
+  const { title, image, body, category, tags, publishedAt } =
     useLoaderData<PostWithCategory>();
 
   const createMarkup = () => {
@@ -55,6 +57,16 @@ export default function Slug() {
   return (
     <>
       <h1>{title}</h1>
+      {!!category && (
+        <p>
+          <Link
+            className="bg-slate-800 py-1 px-2 inline-block"
+            to={"/category/" + category.slug}
+          >
+            {category.name}
+          </Link>
+        </p>
+      )}
       <p className="text-slate-500">
         {format(new Date(publishedAt), "dd/MM/yyyy")}
       </p>
@@ -63,15 +75,19 @@ export default function Slug() {
         className="flex flex-col gap-4"
         dangerouslySetInnerHTML={createMarkup()}
       />
-      {!!category && (
-        <p className="mb-4 text-right">
-          <Link
-            className="bg-slate-800 py-1 px-2"
-            to={"/category/" + category.slug}
-          >
-            {category.name}
-          </Link>
-        </p>
+      {!!tags && (
+        <ul className="list-none flex flex-row mb-4 justify-end">
+          {tags.map((tag) => (
+            <li key={tag.id}>
+              <Link
+                className="inline-block bg-slate-800 py-1 px-2"
+                to={"/tags/" + tag.slug}
+              >
+                {tag.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       )}
     </>
   );

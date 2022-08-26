@@ -10,7 +10,6 @@ import {
 } from "@remix-run/react";
 
 import styles from "~/styles/app.css";
-import Header from "~/components/Header";
 import Layout from "~/components/Layout";
 
 export function links() {
