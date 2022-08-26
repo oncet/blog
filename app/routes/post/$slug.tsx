@@ -81,7 +81,7 @@ export default function Slug() {
             <li key={tag.id}>
               <Link
                 className="inline-block bg-slate-800 py-1 px-2"
-                to={"/tags/" + tag.slug}
+                to={"/tag/" + tag.slug}
               >
                 {tag.name}
               </Link>

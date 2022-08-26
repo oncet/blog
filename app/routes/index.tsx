@@ -32,7 +32,7 @@ export default function Index() {
           {posts.map((post) => (
             <li key={post.id}>
               <Link
-                to={"posts/" + post.slug}
+                to={"post/" + post.slug}
                 className="flex flex-col gap-4 hover:no-underline"
               >
                 <h2>{post.title}</h2>
