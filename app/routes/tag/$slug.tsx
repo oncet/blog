@@ -2,9 +2,9 @@ import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import type { Prisma } from "@prisma/client";
-import { format } from "date-fns";
 
 import { db } from "~/utils/db.server";
+import PostCard from "~/components/PostCard";
 
 type TagWithPosts = Prisma.TagGetPayload<{
   include: {
@@ -51,11 +51,13 @@ export default function Tag() {
                 to={"/post/" + post.slug}
                 className="flex flex-col gap-4 hover:no-underline"
               >
-                <h2>{post.title}</h2>
-                <p className="text-slate-500">
-                  {format(new Date(post.publishedAt), "dd/MM/yyyy")}
-                </p>
-                <img src={post.image} alt={post.title} />
+                <PostCard
+                  post={{
+                    ...post,
+                    publishedAt: new Date(post.publishedAt),
+                    createdAt: new Date(post.createdAt),
+                  }}
+                />
               </Link>
             </li>
           ))}
