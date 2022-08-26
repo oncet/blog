@@ -1,13 +1,14 @@
+import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
 import type { Post } from "@prisma/client";
 
 import { db } from "~/utils/db.server";
-import { format } from "date-fns";
+import PostCard from "~/components/PostCard";
 
 type LoaderData = { posts: Array<Post> };
 
-export const loader = async () => {
+export const loader: LoaderFunction = async () => {
   const data = {
     posts: await db.post.findMany({
       where: {
@@ -35,11 +36,7 @@ export default function Index() {
                 to={"post/" + post.slug}
                 className="flex flex-col gap-4 hover:no-underline"
               >
-                <h2>{post.title}</h2>
-                <p className="text-slate-500">
-                  {format(new Date(post.publishedAt), "dd/MM/yyyy")}
-                </p>
-                <img src={post.image} alt={post.title} />
+                <PostCard post={post} />
               </Link>
             </li>
           ))}

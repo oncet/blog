@@ -76,7 +76,7 @@ export default function Slug() {
         dangerouslySetInnerHTML={createMarkup()}
       />
       {!!tags && (
-        <ul className="list-none flex flex-row mb-4 justify-end">
+        <ul className="list-none flex flex-row justify-end">
           {tags.map((tag) => (
             <li key={tag.id}>
               <Link

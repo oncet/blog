@@ -13,7 +13,7 @@ type CategoryWithPosts = Prisma.CategoryGetPayload<{
 }>;
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const category = await db.category.findFirst({
+  const tag = await db.tag.findFirst({
     where: {
       slug: params.slug,
     },
@@ -22,13 +22,13 @@ export const loader: LoaderFunction = async ({ params }) => {
     },
   });
 
-  if (!category) {
-    throw new Response("Category not found", {
+  if (!tag) {
+    throw new Response("Tag not found", {
       status: 404,
     });
   }
 
-  return json(category);
+  return json(tag);
 };
 
 export default function Category() {
