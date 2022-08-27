@@ -35,5 +35,8 @@
   },
   "engines": {
     "node": ">=14"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

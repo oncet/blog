@@ -10,8 +10,8 @@ datasource db {
 model Post {
   id          Int       @id(map: "posts_pkey") @default(autoincrement())
   title       String    @db.VarChar
-  slug        String    @db.VarChar
-  image       String    @db.VarChar
+  slug        String    @unique() @db.VarChar
+  image       String?   @db.VarChar
   body        String
   categoryId  Int?
   publishedAt DateTime  @db.Timestamptz(6)

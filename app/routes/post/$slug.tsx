@@ -70,7 +70,7 @@ export default function Slug() {
       <p className="text-slate-500">
         {format(new Date(publishedAt), "dd/MM/yyyy")}
       </p>
-      <img src={image} alt={title} />
+      {image && <img src={image} alt={title} />}
       <div
         className="flex flex-col gap-4"
         dangerouslySetInnerHTML={createMarkup()}

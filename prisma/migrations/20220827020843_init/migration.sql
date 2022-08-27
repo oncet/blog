@@ -3,7 +3,7 @@ CREATE TABLE "Post" (
     "id" SERIAL NOT NULL,
     "title" VARCHAR NOT NULL,
     "slug" VARCHAR NOT NULL,
-    "image" VARCHAR NOT NULL,
+    "image" VARCHAR,
     "body" TEXT NOT NULL,
     "categoryId" INTEGER,
     "publishedAt" TIMESTAMPTZ(6) NOT NULL,
@@ -35,6 +35,9 @@ CREATE TABLE "_PostToTag" (
     "A" INTEGER NOT NULL,
     "B" INTEGER NOT NULL
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Post_slug_key" ON "Post"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_PostToTag_AB_unique" ON "_PostToTag"("A", "B");
