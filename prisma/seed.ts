@@ -1,38 +1,77 @@
 import { PrismaClient } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
+import { faker } from "@faker-js/faker";
 const prisma = new PrismaClient();
 
+type CategoryWithoutId = Prisma.CategoryGetPayload<{
+  select: {
+    slug: true;
+    name: true;
+  };
+}>;
+
+type TagWithoutId = Prisma.TagGetPayload<{
+  select: {
+    slug: true;
+    name: true;
+  };
+}>;
+
+const capitalizeFirstLetter = ([first = "", ...rest]: string) =>
+  [first.toUpperCase(), ...rest].join("");
+
 async function main() {
-  const post = await prisma.post.upsert({
-    where: { slug: "awesome-post" },
-    update: {},
-    create: {
-      slug: "awesome-post",
-      title: "Awesome post, man",
-      image:
-        "https://pnhaelxzpnxiuweilmhz.supabase.co/storage/v1/object/public/blog/remix.jpg",
-      body: "Amazing post content. Balizingly fast.",
-      category: {
-        create: {
-          name: "Guides",
-          slug: "guides",
-        },
-      },
-      tags: {
-        create: [
-          {
-            name: "React",
-            slug: "React",
-          },
-          {
-            name: "Remix",
-            slug: "remix",
-          },
-        ],
-      },
-      publishedAt: new Date(),
+  const categoryData: CategoryWithoutId = {
+    slug: "guides",
+    name: "Guides",
+  };
+
+  const tagsData: TagWithoutId[] = [
+    {
+      slug: "react",
+      name: "React",
     },
-  });
-  console.log({ post });
+    {
+      slug: "remix",
+      name: "Remix",
+    },
+  ];
+
+  for (let i = 0; i < 3; i++) {
+    const title = capitalizeFirstLetter(
+      faker.helpers.fake("{{word.adverb}} fast")
+    );
+    const slug = faker.helpers.slugify(title).toLocaleLowerCase();
+
+    const post = await prisma.post.upsert({
+      where: { slug: slug },
+      update: {},
+      create: {
+        slug: slug,
+        title: title,
+        image: faker.image.technics(undefined, undefined, true),
+        body: faker.lorem.sentence(),
+        category: {
+          connectOrCreate: {
+            where: { slug: categoryData.slug },
+            create: {
+              name: categoryData.name,
+              slug: categoryData.slug,
+            },
+          },
+        },
+        tags: {
+          connectOrCreate: tagsData.map((tagData) => ({
+            where: { slug: tagData.slug },
+            create: { name: tagData.name, slug: tagData.slug },
+          })),
+        },
+        publishedAt: new Date(),
+      },
+    });
+
+    console.log(post);
+  }
 }
 
 main()

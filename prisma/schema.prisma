@@ -23,13 +23,13 @@ model Post {
 model Category {
   id    Int    @id @default(autoincrement())
   name  String @db.VarChar
-  slug  String @db.VarChar
+  slug  String @unique() @db.VarChar
   posts Post[]
 }
 
 model Tag {
   id    Int    @id @default(autoincrement())
   name  String @db.VarChar
-  slug  String @db.VarChar
+  slug  String @unique() @db.VarChar
   posts Post[]
 }
