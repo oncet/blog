@@ -43,6 +43,7 @@ export default function Category() {
   return (
     <>
       <h1>{name}</h1>
+      <p>Latests blog posts categorized under {name}.</p>
       {posts && (
         <ul className="list-none">
           {posts.map((post) => (

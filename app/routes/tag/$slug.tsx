@@ -43,6 +43,7 @@ export default function Tag() {
   return (
     <>
       <h1>{name}</h1>
+      <p>Latests blog posts tagged with {name}.</p>
       {posts && (
         <ul className="list-none">
           {posts.map((post) => (

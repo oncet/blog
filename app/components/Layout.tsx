@@ -14,8 +14,8 @@ const Layout: React.FC = ({ children }) => {
         <main className="px-5 pt-2 pb-5 flex flex-col gap-4 grow mx-auto max-w-screen-md w-full">
           {children}
         </main>
-        <footer className="px-5 py-2 bg-gray-800">
-          <div className="mx-auto max-w-screen-md">
+        <footer className=" bg-gray-800">
+          <div className="px-5 py-2 mx-auto max-w-screen-md">
             <a href="https://github.com/oncet/blog">oncet/blog</a>
           </div>
         </footer>

@@ -28,8 +28,9 @@ export default function Index() {
   return (
     <>
       <h1>Oncet's blog</h1>
+      <p>Recent blog posts by Oncet.</p>
       {posts && (
-        <ul className="list-none">
+        <ul className="list-none gap-10">
           {posts.map((post) => {
             return (
               <li key={post.id}>
