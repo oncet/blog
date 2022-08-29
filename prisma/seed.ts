@@ -49,8 +49,10 @@ async function main() {
       create: {
         slug: slug,
         title: title,
-        image: faker.image.technics(undefined, undefined, true),
-        body: faker.lorem.sentence(),
+        image:
+          "https://pnhaelxzpnxiuweilmhz.supabase.co/storage/v1/object/public/blog/UbuntuLoginScreenshot.webp",
+        imageAlt: faker.lorem.sentence(),
+        body: faker.lorem.sentences(undefined, "\n\n"),
         category: {
           connectOrCreate: {
             where: { slug: categoryData.slug },

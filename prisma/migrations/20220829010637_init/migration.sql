@@ -4,6 +4,7 @@ CREATE TABLE "Post" (
     "title" VARCHAR NOT NULL,
     "slug" VARCHAR NOT NULL,
     "image" VARCHAR,
+    "imageAlt" VARCHAR,
     "body" TEXT NOT NULL,
     "categoryId" INTEGER,
     "publishedAt" TIMESTAMPTZ(6) NOT NULL,
