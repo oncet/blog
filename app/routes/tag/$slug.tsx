@@ -33,7 +33,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export const meta: MetaFunction = ({ data }) => {
   return {
-    title: data ? data.name : "Tag not found",
+    title: (data ? data.name : "Tag not found") + " - Oncet",
   };
 };
 
