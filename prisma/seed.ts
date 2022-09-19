@@ -39,7 +39,7 @@ async function main() {
 
   const imagesUrls = [
     "https://pnhaelxzpnxiuweilmhz.supabase.co/storage/v1/object/public/blog/Pop-Team-Epic-clap.webp",
-    "https://pnhaelxzpnxiuweilmhz.supabase.co/storage/v1/object/public/blog/Pop-Team-Epic-explosion.webp?t=2022-08-29T02%3A17%3A07.097Z",
+    "https://pnhaelxzpnxiuweilmhz.supabase.co/storage/v1/object/public/blog/Pop-Team-Epic-explosion.webp",
     "https://pnhaelxzpnxiuweilmhz.supabase.co/storage/v1/object/public/blog/Pop-Team-Epic-hands.webp",
   ];
 
