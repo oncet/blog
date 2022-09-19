@@ -67,7 +67,7 @@ export default function Slug() {
           </Link>
         </p>
       )}
-      <p className="text-slate-500">
+      <p className="text-slate-400">
         {format(new Date(publishedAt), "dd/MM/yyyy")}
       </p>
       {image && <img src={image} alt={title} />}
