@@ -9,7 +9,7 @@ import { db } from "~/utils/db.server";
 
 type PostWithCategory = Prisma.PostGetPayload<{
   include: {
-    category: true;
+    categories: true;
     tags: true;
   };
 }>;
@@ -18,12 +18,10 @@ export const loader: LoaderFunction = async ({ params }) => {
   const post = await db.post.findFirst({
     where: {
       slug: params.slug,
-      publishedAt: {
-        not: undefined,
-      },
+      published: true,
     },
     include: {
-      category: true,
+      categories: true,
       tags: true,
     },
   });
@@ -47,7 +45,7 @@ export const meta: MetaFunction = ({ data }) => {
 };
 
 export default function Slug() {
-  const { title, image, imageAlt, body, category, tags, publishedAt } =
+  const { title, image, imageAlt, body, categories, tags, updatedAt } =
     useLoaderData<PostWithCategory>();
 
   const createMarkup = () => {
@@ -57,18 +55,22 @@ export default function Slug() {
   return (
     <>
       <h1>{title}</h1>
-      {!!category && (
-        <p>
-          <Link
-            className="bg-slate-800 py-1 px-2 inline-block"
-            to={"/category/" + category.slug}
-          >
-            {category.name}
-          </Link>
-        </p>
+      {!!categories && (
+        <ul className="list-none flex flex-row">
+          {categories.map((category) => (
+            <li key={category.id}>
+              <Link
+                className="inline-block bg-slate-800 py-1 px-2"
+                to={"/category/" + category.slug}
+              >
+                {category.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       )}
       <p className="text-slate-400">
-        {format(new Date(publishedAt), "dd/MM/yyyy")}
+        {format(new Date(updatedAt), "dd/MM/yyyy")}
       </p>
       {image && <img src={image} alt={imageAlt || title} />}
       <div

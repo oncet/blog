@@ -12,9 +12,7 @@ export const loader: LoaderFunction = async () => {
   const data = {
     posts: await db.post.findMany({
       where: {
-        publishedAt: {
-          not: undefined,
-        },
+        published: true,
       },
     }),
   };
@@ -41,7 +39,7 @@ export default function Index() {
                   <PostCard
                     post={{
                       ...post,
-                      publishedAt: new Date(post.publishedAt),
+                      updatedAt: new Date(post.updatedAt),
                       createdAt: new Date(post.createdAt),
                     }}
                   />

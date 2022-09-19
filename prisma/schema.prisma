@@ -8,17 +8,17 @@ datasource db {
 }
 
 model Post {
-  id          Int       @id(map: "posts_pkey") @default(autoincrement())
-  title       String    @db.VarChar
-  slug        String    @unique() @db.VarChar
-  image       String?   @db.VarChar
-  imageAlt    String?   @db.VarChar
-  body        String
-  categoryId  Int?
-  publishedAt DateTime  @db.Timestamptz(6)
-  createdAt   DateTime  @default(now()) @db.Timestamptz(6)
-  category    Category? @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  tags        Tag[]
+  id         Int        @id(map: "posts_pkey") @default(autoincrement())
+  title      String     @db.VarChar
+  slug       String     @unique() @db.VarChar
+  image      String?    @db.VarChar
+  imageAlt   String?    @db.VarChar
+  body       String
+  published  Boolean    @default(false)
+  createdAt  DateTime   @default(now()) @db.Timestamptz(6)
+  updatedAt  DateTime   @default(now()) @db.Timestamptz(6)
+  categories Category[]
+  tags       Tag[]
 }
 
 model Category {

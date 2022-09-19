@@ -58,7 +58,8 @@ async function main() {
         image: imagesUrls[Math.floor(Math.random() * imagesUrls.length)],
         imageAlt: faker.lorem.sentence(),
         body: faker.lorem.sentences(undefined, "\n\n"),
-        category: {
+        published: true,
+        categories: {
           connectOrCreate: {
             where: { slug: categoryData.slug },
             create: {
@@ -73,7 +74,6 @@ async function main() {
             create: { name: tagData.name, slug: tagData.slug },
           })),
         },
-        publishedAt: new Date(),
       },
     });
 

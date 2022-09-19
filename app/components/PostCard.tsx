@@ -10,7 +10,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
     <>
       <h2>{post.title}</h2>
       <p className="text-slate-400">
-        {format(new Date(post.publishedAt), "dd/MM/yyyy")}
+        {format(new Date(post.updatedAt), "dd/MM/yyyy")}
       </p>
       {post.image && <img src={post.image} alt={post.imageAlt || post.title} />}
     </>
