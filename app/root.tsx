@@ -1,8 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import {
-  Links,
   LiveReload,
-  Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -20,7 +18,7 @@ export const meta: MetaFunction = () => {
   return {
     charset: "utf-8",
     title: "Awesome blog",
-    description: "Great blog",
+    description: "Awesome blog by Oncet",
     viewport: "width=device-width,initial-scale=1",
   };
 };
@@ -29,7 +27,6 @@ export function CatchBoundary() {
   const caught = useCatch();
 
   return (
-    // TODO Change meta title depending on caught data
     <Layout>
       <div className="flex flex-col gap-4">
         <h1>Whoops!</h1>

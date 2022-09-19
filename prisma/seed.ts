@@ -37,6 +37,12 @@ async function main() {
     },
   ];
 
+  const imagesUrls = [
+    "https://pnhaelxzpnxiuweilmhz.supabase.co/storage/v1/object/public/blog/Pop-Team-Epic-clap.webp",
+    "https://pnhaelxzpnxiuweilmhz.supabase.co/storage/v1/object/public/blog/Pop-Team-Epic-explosion.webp?t=2022-08-29T02%3A17%3A07.097Z",
+    "https://pnhaelxzpnxiuweilmhz.supabase.co/storage/v1/object/public/blog/Pop-Team-Epic-hands.webp",
+  ];
+
   for (let i = 0; i < 3; i++) {
     const title = capitalizeFirstLetter(
       faker.helpers.fake("{{word.adverb}} fast")
@@ -49,8 +55,9 @@ async function main() {
       create: {
         slug: slug,
         title: title,
-        image: faker.image.technics(undefined, undefined, true),
-        body: faker.lorem.sentence(),
+        image: imagesUrls[Math.floor(Math.random() * imagesUrls.length)],
+        imageAlt: faker.lorem.sentence(),
+        body: faker.lorem.sentences(undefined, "\n\n"),
         category: {
           connectOrCreate: {
             where: { slug: categoryData.slug },

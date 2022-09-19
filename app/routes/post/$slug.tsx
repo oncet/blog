@@ -47,7 +47,7 @@ export const meta: MetaFunction = ({ data }) => {
 };
 
 export default function Slug() {
-  const { title, image, body, category, tags, publishedAt } =
+  const { title, image, imageAlt, body, category, tags, publishedAt } =
     useLoaderData<PostWithCategory>();
 
   const createMarkup = () => {
@@ -70,7 +70,7 @@ export default function Slug() {
       <p className="text-slate-400">
         {format(new Date(publishedAt), "dd/MM/yyyy")}
       </p>
-      {image && <img src={image} alt={title} />}
+      {image && <img src={image} alt={imageAlt || title} />}
       <div
         className="flex flex-col gap-4"
         dangerouslySetInnerHTML={createMarkup()}
