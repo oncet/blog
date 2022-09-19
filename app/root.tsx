@@ -20,6 +20,7 @@ export const meta: MetaFunction = () => {
   return {
     charset: "utf-8",
     title: "Awesome blog",
+    description: "Great blog",
     viewport: "width=device-width,initial-scale=1",
   };
 };
